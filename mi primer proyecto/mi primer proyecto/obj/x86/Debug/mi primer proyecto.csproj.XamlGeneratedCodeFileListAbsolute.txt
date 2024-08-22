@@ -1,3 +1,0 @@
-obj\x86\Debug\_mi primer proyecto.g.cs
-obj\x86\Debug\Workflow1.g.cs
-obj\x86\Debug\mi_primer_proyecto_Workflow1_BeforeInitializeComponentHelper.cs
