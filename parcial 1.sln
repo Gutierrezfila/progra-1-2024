@@ -1,25 +1,41 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.35026.282
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "parcial 1", "parcial 1\parcial 1.csproj", "{C9A32365-453B-4374-8F11-9DEB76BC8578}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C9A32365-453B-4374-8F11-9DEB76BC8578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9A32365-453B-4374-8F11-9DEB76BC8578}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9A32365-453B-4374-8F11-9DEB76BC8578}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9A32365-453B-4374-8F11-9DEB76BC8578}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {BBAA768A-D43E-4499-8D96-46245695D665}
-	EndGlobalSection
-EndGlobal
+namespace archivo1
+{
+    //Filadelfo antonio gutierrez orellana USSS011624
+    //Olimpia esmeralda Rivas Vanegas usss017124
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Calculadora de Impuesto a las Actividades Económicas");
+            Console.WriteLine("---------------------------------------------------");
+
+            Console.WriteLine("Ingrese el monto de la actividad económica:");
+            double monto = double.Parse(Console.ReadLine());
+
+            double impuesto = CalcularImpuesto(monto);
+
+            Console.WriteLine($"El impuesto a pagar es: ${impuesto:F2}");
+
+            Console.WriteLine("Presione una tecla para continuar...");
+            Console.ReadKey();
+        }
+
+        static double CalcularImpuesto(double monto)
+        {
+            double[] rangos = { 0.01, 500.01, 1000.01, 2000.01, 3000.01, 6000, 8000, 18000.01, 30000.01, 60000.01, 100000.01, 200000.01, 300000.01, 400000.01, 500000.01, 10000000.1 };
+            double[] precios = { 1.5, 1.5, 3, 3, 6, 9, 15, 39, 63, 93, 125, 195, 255, 300, 340, 490 };
+            double[] adicionales = { 0, 3, 3, 3, 3, 2, 2, 2, 1, 0.8, 0.7, 0.6, 0.45, 0.4, 0.30, 0.18 };
+
+            int i = 0;
+            while (monto > rangos[i])
+            {
+                i++;
+            }
+
+            double exceso = monto - rangos[i - 1];
+            double impuesto = (exceso / 1000) * adicionales[i - 1] + precios[i - 1];
+
+            return impuesto;
+        }
+    }
+}
